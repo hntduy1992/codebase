@@ -45,12 +45,21 @@ Cập nhật các dòng quan trọng:
 
 ### config/cors.php
 ```php
+php artisan config:publish cors
+```
+```php
 // Dòng 19: Paths áp dụng CORS
 'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
 // Dòng 29: Cho phép credentials
 'supports_credentials' => true,
 ```
+Them dong lenh vao bootstrap cau hinh axios
+```javascript
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+```
+
 
 ## Bước 5: Cấu hình Environment
 
