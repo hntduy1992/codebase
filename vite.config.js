@@ -2,7 +2,7 @@ import {defineConfig} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import ViteFonts from 'unplugin-fonts/vite'
 import vue from '@vitejs/plugin-vue';
-
+import  path from 'path'
 export default defineConfig({
     plugins: [
         ViteFonts({
@@ -39,4 +39,9 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
+        },
+    }
 });
