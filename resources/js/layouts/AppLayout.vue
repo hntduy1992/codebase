@@ -16,21 +16,6 @@ const isAuthenticated = computed(() => page.props.auth.user);
 <template>
     <v-app id="inspire">
         <v-navigation-drawer v-model="drawer" v-if="isAuthenticated">
-            <v-sheet
-                class="pa-4"
-                color="grey-lighten-4"
-            >
-                <v-avatar
-                    class="mb-4"
-                    color="grey-darken-1"
-                    size="64"
-                ></v-avatar>
-
-                <div>john@google.com</div>
-            </v-sheet>
-
-            <v-divider></v-divider>
-
             <v-list>
                 <v-list-item
                     v-for="link in links"
@@ -48,6 +33,44 @@ const isAuthenticated = computed(() => page.props.auth.user);
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
                 <v-app-bar-title>Application</v-app-bar-title>
+
+                <v-spacer/>
+                <v-menu
+                    open-on-hover>
+                    <template v-slot:activator="{ props }">
+                        {{ page.props.auth.user.ho_ten }}
+                        <v-avatar color="surface-variant"
+                                  image="https://sohanews.sohacdn.com/2019/9/27/photo-1-1569551899490126660409.jpg"
+                                  v-bind="props"
+                                  class="ma-3"
+                        >
+                            <span v-if="!page.props.auth.user.avatar">
+                                {{ page.props.auth.user.ho_ten.slice(0, 2) }}
+                            </span>
+                        </v-avatar>
+                    </template>
+                    <v-list>
+                        <v-list-item link>
+                            <template v-slot:prepend>
+                                <v-icon>mdi-card-account-details-outline</v-icon>
+                            </template>
+                            <v-list-item-title>Profile</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item link>
+                            <template v-slot:prepend>
+                                <v-icon>mdi-form-textbox-password</v-icon>
+                            </template>
+                            <v-list-item-title>Change password</v-list-item-title>
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item link @click="logout">
+                            <template v-slot:prepend>
+                                <v-icon>mdi-logout</v-icon>
+                            </template>
+                            <v-list-item-title>Logout</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </v-app-bar>
             <slot></slot>
         </v-main>
