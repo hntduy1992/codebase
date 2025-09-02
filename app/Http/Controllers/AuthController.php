@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -21,9 +22,13 @@ class AuthController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function checkLogin(LoginRequest $request)
     {
-        //
+        $request->validated();
+
+        return response()->json([
+            'message'=>'check ok'
+        ]);
     }
 
     /**
