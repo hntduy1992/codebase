@@ -5,7 +5,7 @@ import {router} from "@inertiajs/vue3";
 
 <template>
     <h1>Home page</h1>
-    <v-btn color="primary" @click="router.visit(route('dashboard'))">Dashboard</v-btn>
+    <v-btn color="primary" @click="router.visit(route('login'))">Login</v-btn>
 </template>
 
 <style scoped>

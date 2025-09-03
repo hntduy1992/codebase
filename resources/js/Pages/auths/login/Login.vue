@@ -9,8 +9,8 @@ const loginForm = useForm({
     username: '',
     password: ''
 })
-const formSubmit = async () => {
-  await loginForm.post(route('checkLogin'));
+const formSubmit = () => {
+   loginForm.post(route('checkLogin'));
 };
 </script>
 
@@ -18,14 +18,14 @@ const formSubmit = async () => {
     <v-container fluid class="heigh-full d-flex align-center justify-center bg-grey-lighten-2">
         <v-card width="600">
             <v-card-title class="text-center">
-                <h2 class="text-center">QUẢN TRỊ HỆ THỐNG</h2>
+                <h2 class="text-center">HỆ THỐNG <br> ĐIỀU HÀNH THÔNG TIN CƠ SỞ</h2>
             </v-card-title>
-            <v-card-text>
-                <v-row>
-                    <v-col cols="6">
+            <v-card-text >
+                <v-row >
+                    <v-col cols="6" >
                         <v-img :src="logo" class="logo mx-auto" width="250"></v-img>
                     </v-col>
-                    <v-col cols="6">
+                    <v-col  cols="6">
                         <h2 class="text-center mb-3">Đăng nhập</h2>
                         <v-form @submit.prevent="formSubmit">
                             <v-text-field
