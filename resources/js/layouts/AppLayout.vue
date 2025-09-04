@@ -50,6 +50,12 @@ const isAuthenticated = computed(() => page.props.auth.user);
                         </v-avatar>
                     </template>
                     <v-list>
+                        <v-list-item link @click="router.visit(route('dashboard'))">
+                            <template v-slot:prepend>
+                                <v-icon>mdi-dashboard</v-icon>
+                            </template>
+                            <v-list-item-title>Dashboard</v-list-item-title>
+                        </v-list-item>
                         <v-list-item link>
                             <template v-slot:prepend>
                                 <v-icon>mdi-card-account-details-outline</v-icon>
@@ -71,6 +77,25 @@ const isAuthenticated = computed(() => page.props.auth.user);
                         </v-list-item>
                     </v-list>
                 </v-menu>
+            </v-app-bar>
+            <v-app-bar v-else>
+                <v-app-bar-title>Application</v-app-bar-title>
+                <v-list class="d-flex">
+                    <v-list-item link>
+                        <v-list-item-title>TIN TỨC</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item link>
+                        <v-list-item-title>SỰ KIỆN</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item link>
+                        <v-list-item-title>THỂ THAO</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item link>
+                        <v-list-item-title>DU LỊCH</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" @click="router.visit(route('login'))">Login</v-btn>
             </v-app-bar>
             <slot></slot>
         </v-main>

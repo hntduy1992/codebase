@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class AuthController extends Controller
@@ -21,13 +25,24 @@ class AuthController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @throws ValidationException
      */
-    public function checkLogin(LoginRequest $request)
+    public function checkLogin(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         $request->validated();
+        $credentials = $request->only(['username', 'password']);
+        // Sử dụng Auth::attempt để xác thực người dùng
+        if (Auth::attempt($credentials)) {
+            // Tái tạo session để ngăn chặn tấn công session fixation
+            $request->session()->regenerate();
 
-        return response()->json([
-            'message'=>'check ok'
+            // Chuyển hướng người dùng sau khi đăng nhập thành công
+            return redirect()->intended();
+        }
+
+        // Nếu xác thực thất bại, quay lại trang đăng nhập với lỗi
+        return back()->withErrors([
+            'password' => 'Sai mật khẩu!',
         ]);
     }
 
