@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'getHome'])->name('home');
+Route::get('/tin-tuc', [SiteController::class, 'getTinTuc'])->name('tinTuc');
 Route::prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'checkLogin'])->name('checkLogin');

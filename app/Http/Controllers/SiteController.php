@@ -11,4 +11,9 @@ class SiteController extends Controller
     {
         return Inertia::render('Home', []);
     }
+
+    public function getTinTuc()
+    {
+        return Inertia::render('TinTuc', []);
+    }
 }

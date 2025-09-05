@@ -1,3 +1,10 @@
+<script>
+import BlankLayout from "@/layouts/BlankLayout.vue";
+
+export default {
+    layout:BlankLayout
+}
+</script>
 <script setup>
 import {ref} from 'vue';
 import {useForm} from "@inertiajs/vue3";
@@ -10,7 +17,7 @@ const loginForm = useForm({
     password: ''
 })
 const formSubmit = () => {
-   loginForm.post(route('checkLogin'));
+    loginForm.post(route('checkLogin'));
 };
 </script>
 
@@ -20,12 +27,12 @@ const formSubmit = () => {
             <v-card-title class="text-center">
                 <h2 class="text-center">HỆ THỐNG <br> ĐIỀU HÀNH THÔNG TIN CƠ SỞ</h2>
             </v-card-title>
-            <v-card-text >
-                <v-row >
-                    <v-col cols="6" >
+            <v-card-text>
+                <v-row>
+                    <v-col cols="6">
                         <v-img :src="logo" class="logo mx-auto" width="250"></v-img>
                     </v-col>
-                    <v-col  cols="6">
+                    <v-col cols="6">
                         <h2 class="text-center mb-3">Đăng nhập</h2>
                         <v-form @submit.prevent="formSubmit">
                             <v-text-field

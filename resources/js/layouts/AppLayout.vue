@@ -2,6 +2,7 @@
 import {computed, ref} from 'vue'
 import {route} from 'ziggy-js'
 import {router, usePage} from "@inertiajs/vue3";
+import * as url from "url";
 
 const drawer = ref(true)
 
@@ -11,6 +12,10 @@ const links = [
 ]
 const page = usePage()
 const isAuthenticated = computed(() => page.props.auth.user);
+
+const onLogin = () => {
+    router.visit(route('login', {'callback': document.URL}))
+}
 </script>
 
 <template>
@@ -81,21 +86,21 @@ const isAuthenticated = computed(() => page.props.auth.user);
             <v-app-bar v-else>
                 <v-app-bar-title>Application</v-app-bar-title>
                 <v-list class="d-flex">
-                    <v-list-item link>
+                    <v-list-item link @click="router.visit(route('tinTuc'))">
                         <v-list-item-title>TIN TỨC</v-list-item-title>
                     </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link href="#su-kien">
                         <v-list-item-title>SỰ KIỆN</v-list-item-title>
                     </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link href="#the-thao">
                         <v-list-item-title>THỂ THAO</v-list-item-title>
                     </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link href="#du-lich">
                         <v-list-item-title>DU LỊCH</v-list-item-title>
                     </v-list-item>
                 </v-list>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="router.visit(route('login'))">Login</v-btn>
+                <v-btn color="primary" @click="onLogin">Login</v-btn>
             </v-app-bar>
             <slot></slot>
         </v-main>
